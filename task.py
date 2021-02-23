@@ -4,4 +4,4 @@
 # Assignment: Grou Project: Part 1
 
 def my_func():
-	return "Hello World"
+    return "Hello World"
