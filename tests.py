@@ -17,7 +17,7 @@ class TestCase(unittest.TestCase):
     # Function 2 test cases...
     def test21(self):
         result = task.my_datetime(0)
-        self.assertEqual(result, 0)
+        self.assertEqual(result, "01-01-1970")
 
 if __name__ == '__main__':
     unittest.main()
