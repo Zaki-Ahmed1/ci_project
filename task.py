@@ -19,4 +19,13 @@ def conv_num(num_str):
 
 def my_datetime(num_sec):
 
+    if num_sec == 0:
+        return True
+
     return 0
+
+
+
+# Test
+print(my_datetime(0))
+print(my_datetime(123))
