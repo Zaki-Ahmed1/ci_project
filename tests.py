@@ -5,13 +5,19 @@
 
 
 import unittest
+import task
 
 
 class TestCase(unittest.TestCase):
 
     def test1(self):
         self.assertTrue(True)
+    
 
+    # Function 2 test cases...
+    def test21(self):
+        result = task.my_datetime(0)
+        self.assertEqual(result = 0)
 
 if __name__ == '__main__':
     unittest.main()
