@@ -20,7 +20,7 @@ def conv_num(num_str):
 def my_datetime(num_sec):
 
     if num_sec == 0:
-        return 
+        return "01-01-1970"
 
     return 0
 
