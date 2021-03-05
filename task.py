@@ -21,6 +21,13 @@ def my_datetime(num_sec):
 
     if num_sec == 0:
         return "01-01-1970"
+    
+    # year
+    
+    # days = num_sec / (24*60*60) # secs/ (secs/day) --> days
+    # remainder = num_sec % (24*60*60) # sec remainder --> overflow
+
+
 
     return 0
 
