@@ -176,6 +176,11 @@ def hexStringtoInt(string):
     return output
 
 
+def my_datetime_helper(val):
+    return (val % 4 == 0 and (
+        (val % 100 == 0 and val % 400 == 0) or val % 100 != 0))
+
+
 # Function to calculate the date based on seconds since Epoch
 def my_datetime(num_sec):
     """
@@ -257,10 +262,7 @@ def my_datetime(num_sec):
 
         count_month = 0
 
-        # if (actual_year % 4 == 0 and (
-        #         (actual_year % 100 == 0 and actual_year % 400 == 0) or
-        #         actual_year % 100 != 0)):
-
+        if my_datetime_helper(actual_year):
             # print(actual_year, " - is a leap year")
             # print()
 
