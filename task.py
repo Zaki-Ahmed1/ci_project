@@ -274,15 +274,16 @@ def my_datetime(num_sec):
                 count_month += 1
                 # print("Month currently = ", count_month)
 
-                for day in range(month[0], month[1] + 1):
+                day, count_day = my_datetime_help2(month, count_day, num_days)
+                # for day in range(month[0], month[1] + 1): #mute
 
-                    if count_day >= num_days:
-                        # print("Loo", count_day, ">=", num_days)
-                        break
+                # if count_day >= num_days: # mute
+                # print("Loo", count_day, ">=", num_days)
+                # break #mute
 
-                    count_day += 1
-                    # print("(L)day increased to: ", count_day)
-                    # print("X of the month", day)
+                # count_day += 1 #mute
+                # print("(L)day increased to: ", count_day)
+                # print("X of the month", day)
 
         else:
             for month in calendar:
@@ -294,16 +295,18 @@ def my_datetime(num_sec):
                 count_month += 1
                 # print("Month currently = ", count_month)
 
-                for day in range(month[0], month[1] + 1):
+                day, count_day = my_datetime_help2(month, count_day, num_days)
 
-                    if count_day >= num_days:
-                        # print("Loo", count_day, ">=", num_days)
-                        break
+                # for day in range(month[0], month[1] + 1): #mute
 
-                    count_day += 1
-                    # print("(N)day increased to: ", count_day)
-                    # print(day, "_ of the month")
-                    # print("HELLOOOOOOOOOOO WORLD")
+                # if count_day >= num_days: #mute
+                # print("Loo", count_day, ">=", num_days)
+                # break #mute
+
+                # count_day += 1 #mute
+                # print("(N)day increased to: ", count_day)
+                # print(day, "_ of the month")
+                # print("HELLOOOOOOOOOOO WORLD")
 
     # if remainder > 0:
     #     print("There is a remainder...")
@@ -326,6 +329,15 @@ def my_datetime(num_sec):
 
     return 0
 
+
+def my_datetime_help2(mon, coun_da, num_da):
+    for day in range(mon[0], mon[1] + 1):
+        if coun_da >= num_da:
+            break
+        coun_da += 1
+
+    return day, coun_da
+
 # Test
 # print(my_datetime(0))
 # print()
@@ -347,13 +359,13 @@ def my_datetime(num_sec):
 
 # print(my_datetime(123456789))
 # print(my_datetime(9876543210))
-# print(my_datetime(201653971200/2/2))
+# print(my_datetime(201653971200))
 
 # print(my_datetime(201653971200))
 
 # print(my_datetime(253402243200))
 
-# print(my_datetime(86400*300))
+# print(my_datetime(86400))
 
 
 # for num in range(0,1000):
