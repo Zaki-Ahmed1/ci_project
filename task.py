@@ -197,6 +197,16 @@ def my_datetime(num_sec):
 # print(my_datetime(86400*365))
 # print(my_datetime(86400*366))
 
+
+
+# Function 1
+def conv_num(num_str):
+    """
+    This function takes in a string and converts it into a base 10 number
+    and returns it.
+    Args: num_str (string): returns a base 10 int
+    """
+
     if any(i == " " for i in num_str) or not num_str:
         return None
 
