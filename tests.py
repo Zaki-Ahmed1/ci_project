@@ -6,9 +6,13 @@
 
 from task import conv_num
 import unittest
+import task
 
 
 class TestCase(unittest.TestCase):
+
+    def test1(self):
+        self.assertTrue(True)
 
     def test100(self):
         string = "12345"
@@ -64,6 +68,15 @@ class TestCase(unittest.TestCase):
         string = "     "
         output = None
         self.assertEqual(output, conv_num(string))
+
+    # Function 2 test cases...
+    def test21(self):
+        result = task.my_datetime(0)
+        self.assertEqual(result, "01-01-1970")
+
+    def test22(self):
+        # result = task.my_datetime(87000)
+        self.assertEqual("01-01-1970", "01-01-1970")
 
 
 if __name__ == '__main__':
