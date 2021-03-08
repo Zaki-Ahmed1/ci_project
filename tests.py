@@ -49,7 +49,7 @@ class TestCase(unittest.TestCase):
         string = "12.3.45"
         output = None
         self.assertEqual(output, conv_num(string))
-    
+
     def test108(self):
         string = "100000000000000"
         output = 100000000000000
@@ -59,12 +59,12 @@ class TestCase(unittest.TestCase):
         string = ""
         output = None
         self.assertEqual(output, conv_num(string))
-    
+
     def test110(self):
         string = "     "
         output = None
         self.assertEqual(output, conv_num(string))
-    
+
 
 if __name__ == '__main__':
     unittest.main()
