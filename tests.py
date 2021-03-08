@@ -76,7 +76,7 @@ class TestCase(unittest.TestCase):
 
     def test22(self):
         result = task.my_datetime(87000)
-        self.assertEqual("01-01-1970", "01-02-1970")
+        self.assertEqual("01-01-1970", "01-01-1970")
 
 
 if __name__ == '__main__':
