@@ -109,3 +109,19 @@ def hexStringtoInt(string):
         stringLength -= 1
 
     return output
+
+
+# Function 2
+
+
+# Function 3
+def conv_endian(num, endian='big'):
+    val_num = num
+    num = abs(num)
+    array = []
+    # Check num
+    if num == 0:
+        return "00"
+    # Check if parameter endian is big and little
+    if endian != "big" and endian != "little":
+        return None
