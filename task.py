@@ -294,9 +294,9 @@ def my_datetime(num_sec):
 
                 for day in range(month[0], month[1] + 1):
 
-                    if count_day >= num_days:
+                    # if count_day >= num_days:
                         # print("Loo", count_day, ">=", num_days)
-                        break
+                        # break
 
                     count_day += 1
                     # print("(N)day increased to: ", count_day)
