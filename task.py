@@ -410,13 +410,16 @@ def conv_endian(num, endian='big'):
     temp = ""
     for i in range(len(array) - 1, -1, -1):
         temp = temp + str(array[i])
-        if i % 2 == 0:
-            if endian == 'little':
-                # reverse the two digits - first reverse.
-                temp = temp[::-1]
-            ans = ans + temp
-            ans = ans + " "
-            temp = ""
+
+        ans, temp = conv_endian_help(i, endian, temp, ans)
+
+        # if i % 2 == 0:
+        #     if endian == 'little':
+        #         # reverse the two digits - first reverse.
+        #         temp = temp[::-1]
+        #     ans = ans + temp
+        #     ans = ans + " "
+        #     temp = ""
     if endian == 'little':
         # remove the last space character
         ans = ans[:-1]
@@ -426,3 +429,14 @@ def conv_endian(num, endian='big'):
     if val_num < 0:
         ans = "-" + ans
     return ans
+
+
+def conv_endian_help(a, b, c, d):  # a = i, b = endian, c = temp, d = ans
+    if a % 2 == 0:
+        if b == 'little':
+            c = c[::-1]
+        d = d + c
+        d = d + " "
+        c = ""
+
+    return d, c
