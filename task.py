@@ -109,4 +109,3 @@ def hexStringtoInt(string):
         stringLength -= 1
 
     return output
-
