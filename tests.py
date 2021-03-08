@@ -3,7 +3,7 @@
 # Class: CS 362
 # Assignment: Group Project: Part 1
 
-from task import conv_num
+from task import conv_num, conv_endian
 import unittest
 import task
 
@@ -81,35 +81,35 @@ class TestCase(unittest.TestCase):
     def test301(self):
         num = 954786
         example = '0E 91 A2 '
-        self.assertEqual(example, task.conv_endian(num, 'big'))
+        self.assertEqual(example, conv_endian(num, 'big'))
 
     def test302(self):
         num = 954786
         example = '0E 91 A2 '
-        self.assertEqual(example, task.conv_endian(num))
+        self.assertEqual(example, conv_endian(num))
 
     def test303(self):
         num = -954786
         example = '-0E 91 A2 '
-        self.assertEqual(example, task.conv_endian(num))
-    
+        self.assertEqual(example, conv_endian(num))
+
     def test304(self):
         num = 954786
         example = 'A2 91 0E'
-        self.assertEqual(example, task.conv_endian(num, 'little'))
-    
+        self.assertEqual(example, conv_endian(num, 'little'))
+
     def test305(self):
         num = -954786
         example = '-A2 91 0E'
-        self.assertEqual(example, task.conv_endian(num, 'little'))
-    
+        self.assertEqual(example, conv_endian(num, 'little'))
+
     def test306(self):
         example = '-A2 91 0E'
-        self.assertEqual(example, task.conv_endian(num=-954786, endian='little'))
+        self.assertEqual(example, conv_endian(num=-954786, endian='little'))
 
     def test307(self):
         example = None
-        self.assertEqual(example, task.conv_endian(num=-954786, endian='small'))
+        self.assertEqual(example, conv_endian(num=-954786, endian='small'))
 
 
 if __name__ == '__main__':
