@@ -3,7 +3,6 @@
 # Class: CS 362
 # Assignment: Group Project: Part 1
 
-
 from task import conv_num
 import unittest
 import task
@@ -77,6 +76,17 @@ class TestCase(unittest.TestCase):
     def test22(self):
         # result = task.my_datetime(87000)
         self.assertEqual("01-01-1970", "01-01-1970")
+
+    # Function 3 test cases
+    def test301(self):
+        num = 954786
+        example = '0E 91 A2 '
+        self.assertEqual(example, task.conv_endian(num))
+
+    def test302(self):
+        num = 954786
+        example = '0E 91 A2 '
+        self.assertEqual(example, task.conv_endian(num))
 
 
 if __name__ == '__main__':
