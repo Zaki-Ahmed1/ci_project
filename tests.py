@@ -15,25 +15,32 @@ class TestCase(unittest.TestCase):
         output = 12345
         self.assertEqual(output, conv_num(string))
     
-    # def test101(self):
-    #     string = "-123.45"
-    #     output = -123.45
-    #     self.assertEqual(output, conv_num(string))
+    def test101(self):
+        string = "-123.45"
+        output = -123.45
+        self.assertEqual(output, conv_num(string))
 
-    # def conv_num_test1(self):
-    #     self.assertTrue(True)
+    def test102(self):
+        string = ".45"
+        output = 0.45
+        self.assertEqual(output, conv_num(string))
     
-    # def conv_num_test1(self):
-    #     self.assertTrue(True)
+    def test103(self):
+        string = "123."
+        output = 123.0
+        self.assertEqual(output, conv_num(string))
     
-    # def conv_num_test1(self):
-    #     self.assertTrue(True)
+    def test104(self):
+        string = "0xAD4"
+        output = 2772
+        self.assertEqual(output, conv_num(string))
     
-    # def conv_num_test1(self):
-    #     self.assertTrue(True)
+    def test105(self):
+        string = "0xAZ4"
+        output = None
+        self.assertEqual(output, conv_num(string))
     
-    # def conv_num_test1(self):
-    #     self.assertTrue(True)
+    
 
 if __name__ == '__main__':
     unittest.main()
