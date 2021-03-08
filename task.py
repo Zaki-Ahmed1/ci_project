@@ -31,11 +31,16 @@ def conv_num(num_str):
     Args:
         num_str (string): returns a base 10 int
     """
+
+    if any(i == " " for i in num_str) or not num_str:
+        return None
+    
     numbertoConvert = num_str
     isNegative = False
     isHex = False
     isDecimal = False
     output = 0
+
     if numbertoConvert[0] == "-":
         isNegative = True
         numbertoConvert = numbertoConvert[1:]
@@ -44,13 +49,14 @@ def conv_num(num_str):
         numbertoConvert = numbertoConvert[2:]
     if "." in num_str:
         isDecimal = True
+
     if not isHex:
         if any(i.isalpha() for i in num_str):
             return None
         output = numberStringtoInt(numbertoConvert, isDecimal)
-
     if isHex:
         output = hexStringtoInt(numbertoConvert)
+
     if isNegative:
         output *= -1
     return output
@@ -63,6 +69,8 @@ def numberStringtoInt(string, isDecimal):
 
     if isDecimal:
         toAdd, decimalIndex = decStringtoInt(string, isDecimal)
+        if toAdd == None:
+            return None
         output += toAdd
         if decimalIndex == 0:
             return output
@@ -85,7 +93,7 @@ def decStringtoInt(string, isDecimal):
 
     for number in decString[1:]:
         if number == "." and isDecimal:
-            return None
+            return None, decimalIndex
         output += hexHash[number] * (10**decLength)
         decLength -= 1
 
@@ -99,7 +107,7 @@ def hexStringtoInt(string):
     stringLength = len(string) - 1
 
     for hexNumber in string:
-        if hexNumber not in hexHash.keys():
+        if hexNumber.upper() not in hexHash.keys():
             return None
         if hexNumber.isalpha():
             output += hexHash[hexNumber.upper()] * (16 ** stringLength)
@@ -110,5 +118,3 @@ def hexStringtoInt(string):
 
     return output
 
-test = "0xAD4"
-print(conv_num(test))
