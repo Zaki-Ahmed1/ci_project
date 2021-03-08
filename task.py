@@ -3,7 +3,6 @@
 # Class: CS 362
 # Assignment: Group Project: Part 1
 
-import random
 
 hexHash = {
     "0": 0,
