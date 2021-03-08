@@ -117,4 +117,7 @@ def hexStringtoInt(string):
         stringLength -= 1
 
     return output
+<<<<<<< HEAD
 
+=======
+>>>>>>> function1-add-decimal-integer-hex-logic-and-tests
