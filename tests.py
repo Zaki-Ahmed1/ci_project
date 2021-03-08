@@ -40,6 +40,31 @@ class TestCase(unittest.TestCase):
         output = None
         self.assertEqual(output, conv_num(string))
 
+    def test106(self):
+        string = "12345A"
+        output = None
+        self.assertEqual(output, conv_num(string))
+
+    def test107(self):
+        string = "12.3.45"
+        output = None
+        self.assertEqual(output, conv_num(string))
+
+    def test108(self):
+        string = "100000000000000"
+        output = 100000000000000
+        self.assertEqual(output, conv_num(string))
+
+    def test109(self):
+        string = ""
+        output = None
+        self.assertEqual(output, conv_num(string))
+
+    def test110(self):
+        string = "     "
+        output = None
+        self.assertEqual(output, conv_num(string))
+
 
 if __name__ == '__main__':
     unittest.main()
