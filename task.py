@@ -257,7 +257,7 @@ def my_datetime(num_sec):
 
         count_month = 0
 
-        if (actual_year % 4 == 0 and(
+        if (actual_year % 4 == 0 and (
                 (actual_year % 100 == 0 and actual_year % 400 == 0) or
                 actual_year % 100 != 0)):
 
