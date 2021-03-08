@@ -110,5 +110,3 @@ def hexStringtoInt(string):
 
     return output
 
-test = "0xAD4"
-print(conv_num(test))
