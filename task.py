@@ -5,21 +5,6 @@
 
 import random
 
-# Function 1
-# ! cannot use int(), float(), hex(), literal_eval()
-
-
-def conv_num(num_str):
-    """This function takes in a string and converts it into a base 10 number
-    and returns it.
-
-    Args:
-        num_str (string): returns a base 10 int
-    """
-
-    pass
-
-
 
 # Function to calculate the date based on seconds since Epoch
 def my_datetime(num_sec):
@@ -103,7 +88,9 @@ def my_datetime(num_sec):
 
         count_month = 0
 
-        if actual_year % 4 == 0 and ((actual_year % 100 == 0 and actual_year % 400 == 0) or actual_year % 100 != 0):
+        if (actual_year % 4 == 0 and 
+        ((actual_year % 100 == 0 and actual_year % 400 == 0) 
+        or actual_year % 100 != 0)):
 
             # print(actual_year, " - is a leap year")
             # print()
