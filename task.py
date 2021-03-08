@@ -3,6 +3,126 @@
 # Class: CS 362
 # Assignment: Group Project: Part 1
 
+
+import random
+
+# Function 1
+# ! cannot use int(), float(), hex(), literal_eval()
+
+hexHash = {
+    "0": 0,
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "A": 10,
+    "B": 11,
+    "C": 12,
+    "D": 13,
+    "E": 14,
+    "F": 15,
+}
+
+
+# Function 1
+
+def conv_num(num_str):
+    """This function takes in a string and converts it into a base 10 number
+    and returns it.
+
+    Args:
+        num_str (string): returns a base 10 int
+    """
+    numbertoConvert = num_str
+    isNegative = False
+    isHex = False
+    isDecimal = False
+    output = 0
+    if numbertoConvert[0] == "-":
+        isNegative = True
+        numbertoConvert = numbertoConvert[1:]
+    if numbertoConvert[0:2] == "0x":
+        isHex = True
+        numbertoConvert = numbertoConvert[2:]
+    if "." in num_str:
+        isDecimal = True
+    if not isHex:
+        if any(i.isalpha() for i in num_str):
+            return None
+        output = numberStringtoInt(numbertoConvert, isDecimal)
+
+    if isHex:
+        output = hexStringtoInt(numbertoConvert)
+    if isNegative:
+        output *= -1
+    return output
+
+
+def numberStringtoInt(string, isDecimal):
+    output = 0
+    stringtoConvert = string
+    stringLength = len(string) - 1
+
+    if isDecimal:
+        toAdd, decimalIndex = decStringtoInt(string, isDecimal)
+        output += toAdd
+        if decimalIndex == 0:
+            return output
+        stringtoConvert = string[0:decimalIndex]
+        stringLength = len(stringtoConvert) - 1
+
+    for number in stringtoConvert:
+        output += hexHash[number] * (10**stringLength)
+        stringLength -= 1
+
+    return output
+
+
+def decStringtoInt(string, isDecimal):
+
+    decimalIndex = string.index(".")
+    decString = string[decimalIndex:]
+    decLength = len(decString) - 1
+    output = 0
+
+    for number in decString[1:]:
+        if number == "." and isDecimal:
+            return None
+        output += hexHash[number] * (10**decLength)
+        decLength -= 1
+
+    output = output / (10**len(decString))
+    return output, decimalIndex
+
+
+def hexStringtoInt(string):
+
+    output = 0
+    stringLength = len(string) - 1
+
+    for hexNumber in string:
+        if hexNumber not in hexHash.keys():
+            return None
+        if hexNumber.isalpha():
+            output += hexHash[hexNumber.upper()] * (16 ** stringLength)
+            stringLength -= 1
+            continue
+        output += hexHash[hexNumber.upper()] * (16 ** stringLength)
+        stringLength -= 1
+
+        return output
+      
+
+# Name: Zaki Ahmed, Bryan Rodriguez, John Tran
+# Date: 22 Feb 2021
+# Class: CS 362
+# Assignment: Group Project: Part 1
+
 import random
 
 
@@ -11,7 +131,7 @@ def my_datetime(num_sec):
     """
     Parameters: Seconds(int)
     Returns: Date(str)
-    Summary: Converts number of seconds to date stamp since Epoch time (01-01-1970)
+    Summary: Converts number of seconds to date stamp since Epoch time
     """
 
     # Initial input handling...
@@ -71,7 +191,6 @@ def my_datetime(num_sec):
     count_month = 0
     count_day = 0
 
-
     # Iterate through each year up to max range...
     for year in range(0, 9999):
 
@@ -88,50 +207,45 @@ def my_datetime(num_sec):
 
         count_month = 0
 
-        if (actual_year % 4 == 0 and 
-        ((actual_year % 100 == 0 and actual_year % 400 == 0) 
-        or actual_year % 100 != 0)):
+        if (actual_year % 4 == 0 and(
+                (actual_year % 100 == 0 and actual_year % 400 == 0) or
+                actual_year % 100 != 0)):
 
             # print(actual_year, " - is a leap year")
             # print()
 
-
             for month in calendar_leap:
                 if count_day >= num_days:
-                    # print("Loop broken at month stage", count_day, ">=", num_days)
+                    # print("Loo", count_day, ">=", num_days)
                     break
 
                 count_month += 1
                 # print("Month currently = ", count_month)
 
-
                 for day in range(month[0], month[1] + 1):
 
                     if count_day >= num_days:
-                        # print("Loop broken at day stage", count_day, ">=", num_days)
+                        # print("Loo", count_day, ">=", num_days)
                         break
 
                     count_day += 1
                     # print("(L)day increased to: ", count_day)
                     # print("X of the month", day)
 
-
-
         else:
             for month in calendar:
 
                 if count_day >= num_days:
-                    # print("Loop broken at month stage", count_day, ">=", num_days)
+                    # print("Loo", count_day, ">=", num_days)
                     break
 
                 count_month += 1
                 # print("Month currently = ", count_month)
 
-
                 for day in range(month[0], month[1] + 1):
 
                     if count_day >= num_days:
-                        # print("Loop broken at day stage", count_day, ">=", num_days)
+                        # print("Loo", count_day, ">=", num_days)
                         break
 
                     count_day += 1
@@ -144,7 +258,7 @@ def my_datetime(num_sec):
     #     print("The date is...", day)
     #     # count_day += 1
     #     day += 1
-    #     print("but with the remainder we have incremented to the next day...", day)
+    #     print("w/ remainder we have incremented to the next day...", day)
 
     print(start_month, start_day, start_year)
     print("Days = ", num_days)  # Print for debugging
@@ -159,9 +273,6 @@ def my_datetime(num_sec):
     print("Final Answer = ", count_month, "/", day, "/", actual_year)
 
     return 0
-
-
-
 
 # Test
 # print(my_datetime(0))
@@ -205,3 +316,5 @@ def my_datetime(num_sec):
 
 # print(my_datetime(86400*365))
 # print(my_datetime(86400*366))
+
+
