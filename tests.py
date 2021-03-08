@@ -71,8 +71,8 @@ class TestCase(unittest.TestCase):
 
     # Function 2 test cases...
     def test21(self):
-        # result = task.my_datetime(0)
-        self.assertEqual("01-01-1970", "01-01-1970")
+        result = task.my_datetime(0)
+        self.assertEqual(result, "01-01-1970")
 
     def test22(self):
         # result = task.my_datetime(87000)
