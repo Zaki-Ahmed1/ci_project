@@ -257,9 +257,9 @@ def my_datetime(num_sec):
 
         count_month = 0
 
-        if (actual_year % 4 == 0 and (
-                (actual_year % 100 == 0 and actual_year % 400 == 0) or
-                actual_year % 100 != 0)):
+        # if (actual_year % 4 == 0 and (
+        #         (actual_year % 100 == 0 and actual_year % 400 == 0) or
+        #         actual_year % 100 != 0)):
 
             # print(actual_year, " - is a leap year")
             # print()
@@ -294,9 +294,9 @@ def my_datetime(num_sec):
 
                 for day in range(month[0], month[1] + 1):
 
-                    # if count_day >= num_days:
+                    if count_day >= num_days:
                         # print("Loo", count_day, ">=", num_days)
-                        # break
+                        break
 
                     count_day += 1
                     # print("(N)day increased to: ", count_day)
