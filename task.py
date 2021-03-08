@@ -7,6 +7,8 @@ import random
 
 # Function 1
 # ! cannot use int(), float(), hex(), literal_eval()
+
+
 def conv_num(num_str):
     """This function takes in a string and converts it into a base 10 number
     and returns it.
@@ -30,7 +32,7 @@ def my_datetime(num_sec):
     # Initial input handling...
     if num_sec <= 86399:
         return "01-01-1970"
-    
+
     # Specify num_days for normal calendar year...
     calendar = [
         [1, 31],    # Jan
@@ -62,7 +64,7 @@ def my_datetime(num_sec):
         [1, 30],    # Nov
         [1, 31]     # Dec
     ]
-    
+
     # Calculate how many num_days needed to iterate...
     num_days = num_sec / (24*60*60)
     remainder = num_sec % (24*60*60) / (24*60*60)
@@ -88,11 +90,11 @@ def my_datetime(num_sec):
     # Iterate through each year up to max range...
     for year in range(0, 9999):
 
-        # Break loop if 
+        # Break loop if
         if count_day >= num_days:
             # print("Loop broken at year stage", count_day, ">=", num_days)
             break
-        
+
         count_year = year
         actual_year = 1970 + count_year
         # print()
@@ -111,7 +113,7 @@ def my_datetime(num_sec):
                 if count_day >= num_days:
                     # print("Loop broken at month stage", count_day, ">=", num_days)
                     break
-                
+
                 count_month += 1
                 # print("Month currently = ", count_month)
 
@@ -121,7 +123,7 @@ def my_datetime(num_sec):
                     if count_day >= num_days:
                         # print("Loop broken at day stage", count_day, ">=", num_days)
                         break
-                    
+
                     count_day += 1
                     # print("(L)day increased to: ", count_day)
                     # print("X of the month", day)
@@ -144,12 +146,12 @@ def my_datetime(num_sec):
                     if count_day >= num_days:
                         # print("Loop broken at day stage", count_day, ">=", num_days)
                         break
-                    
+
                     count_day += 1
                     # print("(N)day increased to: ", count_day)
                     # print(day, "_ of the month")
                     # print("HELLOOOOOOOOOOO WORLD")
-    
+
     # if remainder > 0:
     #     print("There is a remainder...")
     #     print("The date is...", day)
@@ -157,13 +159,15 @@ def my_datetime(num_sec):
     #     day += 1
     #     print("but with the remainder we have incremented to the next day...", day)
 
-    print()
+    print(start_month, start_day, start_year)
     print("Days = ", num_days)  # Print for debugging
     print("Remainder = ", remainder)
     print()
 
-    print("Month = ", count_month, "-- Days = ", count_day, "-- Year = ", count_year)
-    print("Month = ", count_month, "-- Days = ", day, "-- Year = ", actual_year)
+    print("Month = ", count_month, "-- Days = ",
+          count_day, "-- Year = ", count_year)
+    print("Month = ", count_month, "-- Days = ",
+          day, "-- Year = ", actual_year)
 
     print("Final Answer = ", count_month, "/", day, "/", actual_year)
 
@@ -210,7 +214,7 @@ def my_datetime(num_sec):
 # print(my_datetime(201653971200))
 
 # 01 / 01 / 5320
-print(my_datetime(105747408000))
+# print(my_datetime(105747408000))
 
-print(my_datetime(86400*365))
-print(my_datetime(86400*366))
+# print(my_datetime(86400*365))
+# print(my_datetime(86400*366))
