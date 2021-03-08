@@ -196,5 +196,3 @@ def my_datetime(num_sec):
 
 # print(my_datetime(86400*365))
 # print(my_datetime(86400*366))
-
-
