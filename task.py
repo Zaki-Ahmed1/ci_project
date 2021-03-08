@@ -428,6 +428,9 @@ def conv_endian(num, endian='big'):
     # if number less than 0 (which is negative) add symbol
     if val_num < 0:
         ans = "-" + ans
+    # Removes the last space at the end
+    if ans[len(ans) - 1] == " ":
+        ans = ans[:len(ans) - 1]
     return ans
 
 

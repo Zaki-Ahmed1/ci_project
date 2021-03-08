@@ -80,17 +80,17 @@ class TestCase(unittest.TestCase):
     # Function 3 test cases
     def test301(self):
         num = 954786
-        example = '0E 91 A2 '
+        example = '0E 91 A2'
         self.assertEqual(example, conv_endian(num, 'big'))
 
     def test302(self):
         num = 954786
-        example = '0E 91 A2 '
+        example = '0E 91 A2'
         self.assertEqual(example, conv_endian(num))
 
     def test303(self):
         num = -954786
-        example = '-0E 91 A2 '
+        example = '-0E 91 A2'
         self.assertEqual(example, conv_endian(num))
 
     def test304(self):
