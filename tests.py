@@ -99,13 +99,37 @@ class TestCase(unittest.TestCase):
         self.assertEqual(output, conv_num(string))
 
     # Function 2 test cases...
-    def test21(self):
+    def test201(self):
         result = task.my_datetime(0)
         self.assertEqual(result, "01-01-1970")
 
-    def test22(self):
-        # result = task.my_datetime(87000)
-        self.assertEqual("01-01-1970", "01-01-1970")
+    def test202(self):
+        result = task.my_datetime(123456789)
+        self.assertEqual(result, "11-29-1973")
+
+    def test203(self):
+        result = task.my_datetime(9876543210)
+        self.assertEqual(result, "12-22-2282")
+
+    def test204(self):
+        result = task.my_datetime(201653971200)
+        self.assertEqual(result, "02-29-8360")
+
+    def test205(self):
+        result = task.my_datetime(86399)
+        self.assertEqual(result, "01-01-1970")
+
+    def test206(self):
+        result = task.my_datetime(86400)
+        self.assertEqual(result, "01-02-1970")
+
+    def test207(self):
+        result = task.my_datetime(86401)
+        self.assertEqual(result, "01-02-1970")
+
+    def test208(self):
+        result = task.my_datetime(86400 * 2)
+        self.assertEqual(result, "01-03-1970")
 
     # Function 3 test cases
     def test301(self):
