@@ -213,6 +213,7 @@ def hexStringtoInt(string):
 
     return output
 
+
 # Specify num_days for normal calendar year...
 calendar = [
     [1, 31],    # Jan
