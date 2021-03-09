@@ -282,8 +282,8 @@ def my_datetime(num_sec):
                     break
 
                 count_month += 1
-                day, count_day =
-                day_looper(month, count_month, count_day, num_days)
+                day, count_day = day_looper(month,
+                                            count_month, count_day, num_days)
 
         else:
             for month in calendar:
@@ -291,8 +291,8 @@ def my_datetime(num_sec):
                     break
 
                 count_month += 1
-                day, count_day =
-                day_looper(month, count_month, count_day, num_days)
+                day, count_day = day_looper(month,
+                                            count_month, count_day, num_days)
 
     return str(count_month).zfill(2) + "-" + str(day).zfill(2) + "-"
     + str(actual_year)
