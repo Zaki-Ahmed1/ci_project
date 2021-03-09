@@ -83,6 +83,21 @@ class TestCase(unittest.TestCase):
         output = 0.0
         self.assertEqual(output, conv_num(string))
 
+    def test114(self):
+        string = "12-34"
+        output = None
+        self.assertEqual(output, conv_num(string))
+
+    def test115(self):
+        string = 1234
+        output = None
+        self.assertEqual(output, conv_num(string))
+
+    def test116(self):
+        string = "12*34"
+        output = None
+        self.assertEqual(output, conv_num(string))
+
     # Function 2 test cases...
     def test21(self):
         result = task.my_datetime(0)

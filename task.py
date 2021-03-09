@@ -87,6 +87,8 @@ def stringCleanerHelper(string):
     isDecimal = False
 
     # strips the string to a "raw" version and adjusts logic parameters
+    if type(numbertoConvert) is not str:
+        return None
     if numbertoConvert[0] == "-":
         isNegative = True
         if len(numbertoConvert) == 1:
@@ -138,6 +140,8 @@ def numberStringtoInt(string, isDecimal):
 
     # converts the string numbers to integers
     for number in stringtoConvert:
+        if not number.isnumeric():
+            return None
         output += hexHash[number] * (10**stringLength)
         stringLength -= 1
 
