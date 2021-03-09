@@ -148,22 +148,82 @@ class TestCase(unittest.TestCase):
         self.assertEqual(example, conv_endian(num))
 
     def test304(self):
+        num = -95
+        example = '-5F'
+        self.assertEqual(example, conv_endian(num))
+
+    def test305(self):
         num = 954786
         example = 'A2 91 0E'
         self.assertEqual(example, conv_endian(num, 'little'))
 
-    def test305(self):
+    def test306(self):
         num = -954786
         example = '-A2 91 0E'
         self.assertEqual(example, conv_endian(num, 'little'))
 
-    def test306(self):
+    def test307(self):
         example = '-A2 91 0E'
         self.assertEqual(example, conv_endian(num=-954786, endian='little'))
 
-    def test307(self):
+    def test308(self):
         example = None
         self.assertEqual(example, conv_endian(num=-954786, endian='small'))
+
+    def test309(self):
+        num = 954786
+        example = None
+        self.assertEqual(example, conv_endian(num, endian=''))
+
+    def test310(self):
+        num = 954786
+        example = None
+        self.assertEqual(example, conv_endian(num, 'icecream'))
+
+    def test311(self):
+        num = 1
+        example = '01'
+        self.assertEqual(example, conv_endian(num, 'big'))
+
+    def test312(self):
+        num = 1
+        example = '01'
+        self.assertEqual(example, conv_endian(num, 'little'))
+
+    def test313(self):
+        num = 1
+        example = None
+        self.assertEqual(example, conv_endian(num, 'bigfish'))
+
+    def test314(self):
+        num = 1
+        example = None
+        self.assertEqual(example, conv_endian(num, 'littlefish'))
+
+    def test315(self):
+        num = -1
+        example = '-01'
+        self.assertEqual(example, conv_endian(num, 'big'))
+
+    def test316(self):
+        num = -1
+        example = '-01'
+        self.assertEqual(example, conv_endian(num, 'little'))
+
+    def test317(self):
+        num = -1
+        example = None
+        self.assertEqual(example, conv_endian(num, 'bigfish'))
+
+    def test318(self):
+        num = -1
+        example = None
+        self.assertEqual(example, conv_endian(num, 'littlefish'))
+
+    def test319(self):
+        num = 95
+        example = '5F'
+        self.assertEqual(example, conv_endian(num))
 
 
 if __name__ == '__main__':

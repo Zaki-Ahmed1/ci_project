@@ -352,40 +352,33 @@ def conv_endian(num, endian='big'):
     # If length of array is odd, append 0
     if len(array) % 2 == 1:
         array.append(0)
+
     ans = ""
     temp = ""
     for i in range(len(array) - 1, -1, -1):
         temp = temp + str(array[i])
-
         ans, temp = conv_endian_help(i, endian, temp, ans)
 
-        # if i % 2 == 0:
-        #     if endian == 'little':
-        #         # reverse the two digits - first reverse.
-        #         temp = temp[::-1]
-        #     ans = ans + temp
-        #     ans = ans + " "
-        #     temp = ""
     if endian == 'little':
-        # remove the last space character
+        # remove space when adding negative
         ans = ans[:-1]
         # reverse the array (doing a second reverse here)
         ans = ans[::-1]
     # if number less than 0 (which is negative) add symbol
     if val_num < 0:
         ans = "-" + ans
-    # Removes the last space at the end
+    # remove the last space at the end
     if ans[len(ans) - 1] == " ":
         ans = ans[:len(ans) - 1]
     return ans
 
 
-def conv_endian_help(a, b, c, d):  # a = i, b = endian, c = temp, d = ans
-    if a % 2 == 0:
-        if b == 'little':
-            c = c[::-1]
-        d = d + c
-        d = d + " "
-        c = ""
+def conv_endian_help(i, endian, temp, ans):
+    if i % 2 == 0:
+        if endian == 'little':
+            temp = temp[::-1]
+        ans = ans + temp
+        ans = ans + " "
+        temp = ""
 
-    return d, c
+    return ans, temp
