@@ -32,25 +32,15 @@ def conv_num(num_str):
     Args: num_str (string): returns a base 10 int
     """
 
-    if any(i == " " for i in num_str) or not num_str:
+    if not num_str:
+        return None
+
+    if stringCleanerHelper(num_str) is None:
         return None
 
     # logic parameters handle if the number is negative, a hex, or a decimal
-    numbertoConvert = num_str
-    isNegative = False
-    isHex = False
-    isDecimal = False
-    output = 0
-
-    # strips the string to a "raw" version and adjusts logic parameters
-    if numbertoConvert[0] == "-":
-        isNegative = True
-        numbertoConvert = numbertoConvert[1:]
-    if numbertoConvert[0:2] == "0x":
-        isHex = True
-        numbertoConvert = numbertoConvert[2:]
-    if "." in num_str:
-        isDecimal = True
+    numbertoConvert, isNegative, isHex, isDecimal = stringCleanerHelper(
+        num_str)
 
     if not isHex:
         # checks if the string contains any alphabetical numbers\
@@ -61,6 +51,12 @@ def conv_num(num_str):
         output = numberStringtoInt(numbertoConvert, isDecimal)
     if isHex:
         # calls hex integer helper function
+        # logic below checks that only alphabetical
+        # and numeric numbers are left after parsing out
+        # hex prefix
+        if any(not i.isalpha() and not i.isnumeric()
+               for i in numbertoConvert):
+            return None
         output = hexStringtoInt(numbertoConvert)
 
     # makes the output
@@ -68,6 +64,44 @@ def conv_num(num_str):
     if isNegative:
         output *= -1
     return output
+
+
+def stringCleanerHelper(string):
+    """a helper function to clean the string to be converted
+    into an integer
+
+    Args:
+        string (str): the string to be cleaned
+
+    Returns:
+        None: return None if the string is not a valid input
+        string: returns a cleaned version of the string
+        isNegative: returns a boolean if the number is negative
+        isHex: returns a boolean if the number is a hex number
+        isDecimal: return a boolean if the number has a decimal in it
+    """
+
+    numbertoConvert = string
+    isNegative = False
+    isHex = False
+    isDecimal = False
+
+    # strips the string to a "raw" version and adjusts logic parameters
+    if numbertoConvert[0] == "-":
+        isNegative = True
+        if len(numbertoConvert) == 1:
+            return None
+        numbertoConvert = numbertoConvert[1:]
+    if numbertoConvert[0:2] == "0x":
+        isHex = True
+        numbertoConvert = numbertoConvert[2:]
+    if "." in numbertoConvert:
+        isDecimal = True
+
+    if any(i == " " for i in numbertoConvert) or not numbertoConvert:
+        return None
+
+    return (numbertoConvert, isNegative, isHex, isDecimal)
 
 
 def numberStringtoInt(string, isDecimal):
