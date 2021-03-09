@@ -67,17 +67,17 @@ class TestCase(unittest.TestCase):
         string = "     "
         output = None
         self.assertEqual(output, conv_num(string))
-    
+
     def test111(self):
         string = "-0x."
         output = None
         self.assertEqual(output, conv_num(string))
-    
+
     def test112(self):
         string = "-"
         output = None
         self.assertEqual(output, conv_num(string))
-    
+
     def test113(self):
         string = "."
         output = 0.0
