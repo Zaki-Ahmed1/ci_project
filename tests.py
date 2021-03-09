@@ -147,7 +147,7 @@ class TestCase(unittest.TestCase):
         example = '-0E 91 A2'
         self.assertEqual(example, conv_endian(num))
 
-    def test303(self):
+    def test304(self):
         num = -95
         example = '-5F'
         self.assertEqual(example, conv_endian(num))
