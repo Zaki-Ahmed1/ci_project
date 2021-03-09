@@ -295,8 +295,9 @@ def my_datetime(num_sec):
                 day, count_day = day_looper(month,
                                             count_month, count_day, num_days)
 
-    return str(count_month).zfill(2) + "-" + str(day).zfill(2) + "-"
-    + str(actual_year)
+    string = str(count_month).zfill(2) + "-" + str(day).zfill(2)
+    string += "-" + str(actual_year)
+    return string
 
 
 def is_leap_year(year):
