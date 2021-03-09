@@ -353,15 +353,6 @@ def conv_endian(num, endian='big'):
     if len(array) % 2 == 1:
         array.append(0)
 
-    def conv_endian_help(i, endian, temp, ans):
-        if i % 2 == 0:
-            if endian == 'little':
-                temp = temp[::-1]
-            ans = ans + temp
-            ans = ans + " "
-            temp = ""
-
-        return ans, temp
     ans = ""
     temp = ""
     for i in range(len(array) - 1, -1, -1):
@@ -380,3 +371,14 @@ def conv_endian(num, endian='big'):
     if ans[len(ans) - 1] == " ":
         ans = ans[:len(ans) - 1]
     return ans
+
+
+def conv_endian_help(i, endian, temp, ans):
+    if i % 2 == 0:
+        if endian == 'little':
+            temp = temp[::-1]
+        ans = ans + temp
+        ans = ans + " "
+        temp = ""
+
+    return ans, temp
