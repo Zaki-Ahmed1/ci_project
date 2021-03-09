@@ -82,17 +82,17 @@ class TestCase(unittest.TestCase):
         string = "."
         output = 0.0
         self.assertEqual(output, conv_num(string))
-    
+
     def test114(self):
         string = "12-34"
         output = None
         self.assertEqual(output, conv_num(string))
-    
+
     def test115(self):
         string = 1234
         output = None
         self.assertEqual(output, conv_num(string))
-    
+
     def test116(self):
         string = "12*34"
         output = None
