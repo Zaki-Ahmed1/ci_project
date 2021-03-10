@@ -283,6 +283,13 @@ def my_datetime(num_sec):
         actual_year = 1970 + year
         count_month = 0
 
+        if num_days >= 370:
+            if is_leap_year(actual_year):
+                num_days -= 366
+            else:
+                num_days -= 365
+            continue
+
         if is_leap_year(actual_year):
             for month in calendar_leap:
 
@@ -386,15 +393,24 @@ def day_adjustor(level_1, level_2, level_3, day, count_month, actual_year):
 
 # Function 3
 def conv_endian(num, endian='big'):
+    """"
+    Parameters: num (int), endian (str)
+    Returns: ans (str)
+    Summary: Converts number into an endian.
+    """
+
     val_num = num
     num = abs(num)
     array = []
+
     # Check num
     if num == 0:
         return "00"
+
     # Check if parameter endian is big and little
     if endian != "big" and endian != "little":
         return None
+
     while num != 0:
         # Append value of value
         remainder = num % 16
@@ -405,6 +421,7 @@ def conv_endian(num, endian='big'):
         else:
             # Append value of remainder
             array.append(remainder)
+
     # If length of array is odd, append 0
     if len(array) % 2 == 1:
         array.append(0)
@@ -418,11 +435,14 @@ def conv_endian(num, endian='big'):
     if endian == 'little':
         # remove space when adding negative
         ans = ans[:-1]
+
         # reverse the array (doing a second reverse here)
         ans = ans[::-1]
+
     # if number less than 0 (which is negative) add symbol
     if val_num < 0:
         ans = "-" + ans
+
     # remove the last space at the end
     if ans[len(ans) - 1] == " ":
         ans = ans[:len(ans) - 1]
@@ -430,9 +450,17 @@ def conv_endian(num, endian='big'):
 
 
 def conv_endian_help(i, endian, temp, ans):
+    """
+    Parameters: i (int), endian (str), temp (str), ans (str)
+    Returns: ans (str), temp (str)
+    Summary: Helper function for conv_endian to properly adjust values
+             needed for processing.
+    """
+
     if i % 2 == 0:
         if endian == 'little':
             temp = temp[::-1]
+
         ans = ans + temp
         ans = ans + " "
         temp = ""
