@@ -259,6 +259,9 @@ def my_datetime(num_sec):
     if num_sec < (24 * 60 * 60):
         return "01-01-1970"
 
+    if num_sec > (86400 * 365 * 8035 + 86400 * 122):
+        return "12-31-9999"
+
     # Calculate how many num_days needed to iterate...
     num_days = num_sec / (24 * 60 * 60)
     remainder = num_sec % (24 * 60 * 60) / (24 * 60 * 60)
@@ -270,8 +273,11 @@ def my_datetime(num_sec):
     # Iterate through each year up to max range...
     for year in range(0, 9999):
 
-        # Break loop if...
+        # Set flag and break loop if...
+        level_1 = False
+
         if count_day >= num_days:
+            level_1 = True
             break
 
         actual_year = 1970 + year
@@ -279,24 +285,40 @@ def my_datetime(num_sec):
 
         if is_leap_year(actual_year):
             for month in calendar_leap:
+
+                # Set flag and break loop if...
+                level_2 = False
+
                 if count_day >= num_days:
+                    level_2 = True
                     break
 
                 count_month += 1
-                day, count_day = day_looper(month,
-                                            count_month, count_day, num_days)
+                day, count_day, level_3 = day_looper(month, count_month,
+                                                     count_day, num_days)
 
         else:
             for month in calendar:
+
+                # Set flag and break loop if...
+                level_2 = False
+
                 if count_day >= num_days:
+                    level_2 = True
                     break
 
                 count_month += 1
-                day, count_day = day_looper(month,
-                                            count_month, count_day, num_days)
+                day, count_day, level_3 = day_looper(month, count_month,
+                                                     count_day, num_days)
 
+    # Adjust date / year if necessary on special cases...
+    day, count_month, actual_year = day_adjustor(level_1, level_2, level_3,
+                                                 day, count_month, actual_year)
+
+    # Build string for output...
     string = str(count_month).zfill(2) + "-" + str(day).zfill(2)
     string += "-" + str(actual_year)
+
     return string
 
 
@@ -313,19 +335,53 @@ def is_leap_year(year):
 
 def day_looper(mon, count_month, count_da, num_da):
     """
-    Parameters: Month (int), Count of Days (int), Number of Days (int)
+    Parameters: Month (int), Count of Month (int), Count of Days (int),
+                Number of Days (int)
     Returns: Day of Month (int), Count of Days (int)
     Summary: Iterates through the number of days in each month
     """
 
     # Iterate through the days in each month whilst keeping count...
     for day in range(mon[0], mon[1] + 1):
+
+        # Set flag and break loop if...
+        level_3 = False
+
         if count_da >= num_da:
+            level_3 = True
             break
 
         count_da += 1
 
-    return day, count_da
+    return day, count_da, level_3
+
+
+def day_adjustor(level_1, level_2, level_3, day, count_month, actual_year):
+    """
+    Parameters: Level 1 (bool), Level 2 (bool), Level 3 (bool)
+                Day (int), Count of Month (int), Year (int)
+    Returns: Day of Month (int), Count of Month (int), Year (int)
+    Summary: Adjusts the date if the loop has ended on a 31st or end of year.
+    """
+
+    # Adjustment for when break occurs on 31st of the month...
+    if level_1 is True and level_2 is True and level_3 is False:
+        day = 1
+        count_month += 1
+
+    # Adjustment for when break occurs on 31st of last lonth of year...
+    if level_1 is True and level_2 is False and level_3 is False:
+        day = 1
+        count_month = 1
+        actual_year += 1
+
+    # Adjusting display for reaching limits of function...
+    if actual_year > 9999:
+        day = 31
+        count_month = 12
+        actual_year = 9999
+
+    return day, count_month, actual_year
 
 
 # Function 3
