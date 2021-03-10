@@ -256,11 +256,9 @@ def my_datetime(num_sec):
     """
 
     # Initial input handling...
-    if num_sec < (24 * 60 * 60):
-        return "01-01-1970"
-
-    if num_sec > (86400 * 365 * 8035 + 86400 * 122):
-        return "12-31-9999"
+    if num_sec < (24 * 60 * 60) or num_sec > (86400 * (365 * 8035 + 122)):
+        output = input_handler(num_sec)
+        return output
 
     # Calculate how many num_days needed to iterate...
     num_days = num_sec / (24 * 60 * 60)
@@ -325,6 +323,20 @@ def my_datetime(num_sec):
     string += "-" + str(actual_year)
 
     return string
+
+
+def input_handler(num_sec):
+    """
+    Parameters: Number of Seconds (int)
+    Returns: Date (str)
+    Summary: Handles values for too large / too small.
+    """
+
+    if num_sec < (24 * 60 * 60):
+        return "01-01-1970"
+
+    if num_sec > (86400 * 365 * 8035 + 86400 * 122):
+        return "12-31-9999"
 
 
 def is_leap_year(year):
