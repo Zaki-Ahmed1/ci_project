@@ -6,6 +6,8 @@
 from task import conv_num, conv_endian
 import unittest
 import task
+import random
+import datetime
 
 
 class TestCase(unittest.TestCase):
@@ -130,6 +132,34 @@ class TestCase(unittest.TestCase):
     def test208(self):
         result = task.my_datetime(86400 * 2)
         self.assertEqual(result, "01-03-1970")
+
+    def test209(self):
+        array1 = []
+        array2 = []
+
+        # Create loop for # of instances to randomly test...
+        for i in range(0, 10000):
+
+            # Generate random number of seconds from 0 till max range...
+            num = random.randint(0, 253402300799)
+
+            # Use Python internal tools to create correct value...
+            result1 = datetime.datetime.utcfromtimestamp(num)
+            string1 = result1.strftime("%m-%d-%Y")
+
+            # Run my function to obtain is output
+            string2 = task.my_datetime(num)
+
+            # Append random entries into respecitve arrays...
+            array1.append(string2)
+            array2.append(string1)
+
+        # Compare the two outputs
+        self.assertEqual(array1, array2)
+
+    def test210(self):
+        result = task.my_datetime(253402300799 * 2)
+        self.assertEqual(result, "12-31-9999")
 
     # Function 3 test cases
     def test301(self):

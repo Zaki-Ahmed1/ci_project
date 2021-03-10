@@ -256,11 +256,9 @@ def my_datetime(num_sec):
     """
 
     # Initial input handling...
-    if num_sec < (24 * 60 * 60):
-        return "01-01-1970"
-
-    if num_sec > (86400 * 365 * 8035 + 86400 * 122):
-        return "12-31-9999"
+    if num_sec < (24 * 60 * 60) or num_sec > (86400 * (365 * 8035 + 122)):
+        output = input_handler(num_sec)
+        return output
 
     # Calculate how many num_days needed to iterate...
     num_days = num_sec / (24 * 60 * 60)
@@ -282,6 +280,11 @@ def my_datetime(num_sec):
 
         actual_year = 1970 + year
         count_month = 0
+
+        # Reduce the comlpexity of the operations required...
+        if num_days >= 370:
+            num_days = day_reducer(actual_year, num_days)
+            continue
 
         if is_leap_year(actual_year):
             for month in calendar_leap:
@@ -322,6 +325,20 @@ def my_datetime(num_sec):
     return string
 
 
+def input_handler(num_sec):
+    """
+    Parameters: Number of Seconds (int)
+    Returns: Date (str)
+    Summary: Handles values for too large / too small.
+    """
+
+    if num_sec < (24 * 60 * 60):
+        return "01-01-1970"
+
+    if num_sec > (86400 * 365 * 8035 + 86400 * 122):
+        return "12-31-9999"
+
+
 def is_leap_year(year):
     """
     Parameters: Year (int)
@@ -333,10 +350,25 @@ def is_leap_year(year):
         (year % 100 == 0 and year % 400 == 0) or year % 100 != 0))
 
 
+def day_reducer(actual_year, num_days):
+    """
+    Parameters: Year (int), Number of Days (float)
+    Returns: Boolean (bool)
+    Summary: Reduces the batch entry by a year until desired year reached.
+    """
+
+    if is_leap_year(actual_year):
+        num_days -= 366
+    else:
+        num_days -= 365
+
+    return num_days
+
+
 def day_looper(mon, count_month, count_da, num_da):
     """
     Parameters: Month (int), Count of Month (int), Count of Days (int),
-                Number of Days (int)
+                Number of Days (float)
     Returns: Day of Month (int), Count of Days (int)
     Summary: Iterates through the number of days in each month
     """
@@ -386,15 +418,24 @@ def day_adjustor(level_1, level_2, level_3, day, count_month, actual_year):
 
 # Function 3
 def conv_endian(num, endian='big'):
+    """"
+    Parameters: num (int), endian (str)
+    Returns: ans (str)
+    Summary: Converts number into an endian.
+    """
+
     val_num = num
     num = abs(num)
     array = []
+
     # Check num
     if num == 0:
         return "00"
+
     # Check if parameter endian is big and little
     if endian != "big" and endian != "little":
         return None
+
     while num != 0:
         # Append value of value
         remainder = num % 16
@@ -405,6 +446,7 @@ def conv_endian(num, endian='big'):
         else:
             # Append value of remainder
             array.append(remainder)
+
     # If length of array is odd, append 0
     if len(array) % 2 == 1:
         array.append(0)
@@ -418,11 +460,14 @@ def conv_endian(num, endian='big'):
     if endian == 'little':
         # remove space when adding negative
         ans = ans[:-1]
+
         # reverse the array (doing a second reverse here)
         ans = ans[::-1]
+
     # if number less than 0 (which is negative) add symbol
     if val_num < 0:
         ans = "-" + ans
+
     # remove the last space at the end
     if ans[len(ans) - 1] == " ":
         ans = ans[:len(ans) - 1]
@@ -430,9 +475,17 @@ def conv_endian(num, endian='big'):
 
 
 def conv_endian_help(i, endian, temp, ans):
+    """
+    Parameters: i (int), endian (str), temp (str), ans (str)
+    Returns: ans (str), temp (str)
+    Summary: Helper function for conv_endian to properly adjust values
+             needed for processing.
+    """
+
     if i % 2 == 0:
         if endian == 'little':
             temp = temp[::-1]
+
         ans = ans + temp
         ans = ans + " "
         temp = ""
