@@ -283,11 +283,9 @@ def my_datetime(num_sec):
         actual_year = 1970 + year
         count_month = 0
 
+        # Reduce the comlpexity of the operations required...
         if num_days >= 370:
-            if is_leap_year(actual_year):
-                num_days -= 366
-            else:
-                num_days -= 365
+            num_days = day_reducer(actual_year, num_days)
             continue
 
         if is_leap_year(actual_year):
@@ -340,10 +338,25 @@ def is_leap_year(year):
         (year % 100 == 0 and year % 400 == 0) or year % 100 != 0))
 
 
+def day_reducer(actual_year, num_days):
+    """
+    Parameters: Year (int), Number of Days (float)
+    Returns: Boolean (bool)
+    Summary: Reduces the batch entry by a year until desired year reached.
+    """
+
+    if is_leap_year(actual_year):
+        num_days -= 366
+    else:
+        num_days -= 365
+
+    return num_days
+
+
 def day_looper(mon, count_month, count_da, num_da):
     """
     Parameters: Month (int), Count of Month (int), Count of Days (int),
-                Number of Days (int)
+                Number of Days (float)
     Returns: Day of Month (int), Count of Days (int)
     Summary: Iterates through the number of days in each month
     """
